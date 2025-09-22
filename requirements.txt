@@ -6,8 +6,10 @@ aiosignal==1.4.0
 annotated-types==0.7.0
 asyncio==4.0.0
 attrs==25.3.0
+beautifulsoup4==4.13.5
 certifi==2025.8.3
 charset-normalizer==3.4.3
+deep-translator==1.11.4
 environs==14.3.0
 frozenlist==1.7.0
 idna==3.10
@@ -19,7 +21,9 @@ pydantic==2.11.9
 pydantic_core==2.33.2
 python-dotenv==1.1.1
 requests==2.32.5
+soupsieve==2.8
 typing-inspection==0.4.1
 typing_extensions==4.15.0
 urllib3==2.5.0
+wikipedia==1.4.0
 yarl==1.20.1

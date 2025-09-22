@@ -5,7 +5,7 @@ import asyncio
 
 env = Env()
 env.read_env()
-bot = Bot(env.str("TOKEN"))
+Echo_bot = Bot(env.str("TOKEN"))
 dp=Dispatcher()
 
 @dp.message()
@@ -14,7 +14,7 @@ async def echo(message:Message):
     await message.reply(f"Assalomu Alaykum :{message.from_user.first_name} , \n Siz {message.text} yozdingiz !!!")
 async def main():
     print("Working")
-    await dp.start_polling(bot)
+    await dp.start_polling(Echo_bot)
     
 asyncio.run(main())
 

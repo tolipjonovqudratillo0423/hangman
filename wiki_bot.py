@@ -10,8 +10,10 @@ wikipedia.set_lang("uz")
 
 def wiki(query):
     try:
+        page = wikipedia.page(query)
+        url = page.url
         result = wikipedia.summary(query,sentences=2)
-        return result
+        return f"TIL = UZB \n\n {result} \n\n 📎link = {url}"
     except wikipedia.exceptions.DisambiguationError as e:
         return f" Bir nechta Malumotlar topildi :{e.options[:5]}"
     except wikipedia.exceptions.PageError:
@@ -19,7 +21,7 @@ def wiki(query):
 
 env = Env()
 env.read_env()
-bot = Bot(env.str("WIKITOKEN"))
+Wiki_bot = Bot(env.str("WIKITOKEN"))
 dp=Dispatcher()
 
 @dp.message(CommandStart())
@@ -42,7 +44,7 @@ async def handle(messege:types.message):
     await messege.answer(answer)
 
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling(Wiki_bot)
 
     
 if __name__=="__main__":
