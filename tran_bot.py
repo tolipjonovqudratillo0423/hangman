@@ -8,28 +8,31 @@ from deep_translator import GoogleTranslator
 
 env = Env()
 env.read_env()
-bot = Bot(env.str("TOKEN"))
+bot = Bot(env.str("TRANTOKEN"))
 dp=Dispatcher()
-async def tran(query):
-    return GoogleTranslator(query,"en")
 
 @dp.message(CommandStart())
 async def command(message:Message):
     await message.answer(f"""👋 Assalomu alaykum, {message.from_user.first_name}!
 🤖 Bizning Translate botimizga xush kelibsiz! 🎉
 🔎 Bu yerda siz kerakli ma’lumotlarni tez va oson Tarjima Qilishingiz mumkin 📚✨
-        boshalsh uchun ! '\search deb yozing""")
-dp.message()
+        boshalsh uchun ! '\\search deb yozing""")
+    
+async def tran(message: Message):
+    if not message.text:
+        await message.reply(" Iltimos, faqat matn yuboring.")
+        return 
+@dp.message()
 async def tran(message:Message):
     
-    translated = GoogleTranslator(source="uz",target="eng").translate(message.text)
+    translated = GoogleTranslator(source="uz",target="en").translate(message.text)
 
     await message.reply(f"--> {message.text} Tarjimasi --> {translated}")
 
     
 async def main():
+    print("Tran Bot Working ✅")
     await dp.start_polling(bot)
-    print("Tran Bot Working")
 
 if __name__=="__main__":
     asyncio.run(main())
